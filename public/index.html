@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Translations</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+<!--A leftover from the originally generated project. Used rather for testing purposes.-->
+
+<img src="images/stripes.png" alt="">
+<h1>Translation examples</h1>
+<p>Index HTML doc used for quick testing</p>
+
+<div>
+    <label for="identifier">Identifier</label>
+    <input type="text" id="identifier" placeholder="ID of the translation">
+    <button id="getOne">GET one</button>
+    <button id="crearteOne">POST one</button>
+    <button id="updateOne">PUT one</button>
+    <button id="deleteOne">DELETE one</button>
+</div>
+<div>
+    <button id="getAll">GET all</button>
+</div>
+<div>
+    <label for="searchTerm">Search term</label>
+    <input type="text" id="searchTerm" placeholder="Search phrase">
+    <button id="search">Search</button>
+    <form>
+        <input type="radio" id="primary" name="options" value="primary" checked>
+        <label for="primary">Primary</label><br>
+
+        <input type="radio" id="secondary" name="options" value="secondary">
+        <label for="secondary">Secondary</label><br>
+
+        <input type="radio" id="both" name="options" value="both">
+        <label for="both">Both</label><br>
+    </form>
+</div>
+
+<script>
+    function getSearchFields() {
+        const selectedOption = document.querySelector('input[name="options"]:checked');
+        if (selectedOption) {
+            return selectedOption.value;
+        } else {
+            console.log('No option selected');
+        }
+    }
+
+    function getTranslationId() {
+        const input = document.getElementById('identifier');
+        return input.value;
+    }
+
+    function getSearchTerm() {
+        const input = document.getElementById('searchTerm');
+        return input.value;
+    }
+
+    document.getElementById('getOne').addEventListener('click', () => {
+        fetch(`/translations/${getTranslationId()}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+
+    document.getElementById('deleteOne').addEventListener('click', () => {
+        fetch(`/translations/${getTranslationId()}`, {
+            method: 'DELETE',
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+
+    document.getElementById('getAll').addEventListener('click', () => {
+        fetch('/translations/')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+    document.getElementById('search').addEventListener('click', () => {
+        fetch(`/translations/search?term=${getSearchTerm()}&type=${getSearchFields()}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    });
+
+
+</script>
+</body>
+
+</html>
