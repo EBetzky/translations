@@ -1,5 +1,6 @@
 {
-  "name": "bootstrap2",
+  "name": "translations-app",
+  "description": "Translations app",
   "version": "0.0.1",
   "private": true,
   "scripts": {
