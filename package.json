@@ -3,9 +3,10 @@
   "description": "Translations app",
   "version": "0.0.1",
   "private": true,
+
   "scripts": {
-    "start": "node src/app.ts",
-    "dev": "nodemon src/app.ts",
+    "start": "ts-node source/app.ts --require ts-node/register",
+    "dev": "nodemon source/app.ts --require ts-node/register",
     "build": "tsc",
     "lint": "eslint . --ext .ts",
     "lint:fix": "eslint . --ext .ts --fix"
@@ -24,9 +25,11 @@
     "@types/express": "^4.17.19",
     "@types/swagger-jsdoc": "^6.0.2",
     "@types/swagger-ui-express": "^4.1.5",
-    "@typescript-eslint/eslint-plugin": "^6.8.0",
-    "@typescript-eslint/parser": "^6.8.0",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
     "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "eslint-plugin-react": "^7.33.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"

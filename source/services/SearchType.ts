@@ -1,6 +1,6 @@
 export enum SearchType {
-  PRIMARY,
-  SECONDARY,
-  BOTH,
-  ALL,
+    PRIMARY,
+    SECONDARY,
+    BOTH,
+    ALL
 }
